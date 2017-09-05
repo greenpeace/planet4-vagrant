@@ -1,0 +1,38 @@
+---
+classes:
+  - profile::base
+  - profile::selenium_hub
+  - profile::selenium_node
+  - profile::chrome
+  - profile::geckodriver
+  - profile::php_composer
+  - profile::php_composer70
+
+selinux::selinux_mode: 'permissive'
+#selenium::version: 2.53.1
+selenium::version: 3.4.0
+selenium::geckodriver_version: 0.18.0
+selenium::selenium_hub: 'localhost'
+
+### Read me closely!!!! Only uncomment _1_ of the follwing lines. Don't use multiples!
+
+### Uncomment the line below to use Firefox only. Comment out the line for Chrome. (Selenium 2.x)
+#selenium::node_options: '-Dwebdriver.enable.native.events=1 -role node -browser "browserName=firefox, maxInstances=5, platform=ANY, seleniumProtocol=WebDriver" -browserSessionReuse'
+
+### Uncomment the line below to use Chrome. Comment out the line for Firefox. (Selenium 2.x)
+#selenium::node_options: '-Dwebdriver.chrome.driver=/bin/chromedriver -role node -browser "browserName=chrome, maxInstances=5, platform=ANY, seleniumProtocol=WebDriver" -browserSessionReuse'
+
+### Uncomment the line below to allow both browsers to work simultaneously (Selenium 2.x)
+#selenium::node_options: '-Dwebdriver.enable.native.events=1 -Dwebdriver.chrome.driver=/bin/chromedriver -role node -browser "browserName=chrome, maxInstances=5, platform=ANY, seleniumProtocol=WebDriver" -browser "browserName=firefox, maxInstances=5, platform=ANY, seleniumProtocol=WebDriver" -browserSessionReuse'
+
+### Uncomment the line below to use allow both browsers to work simultaneously (Selenium 3.4.x)
+selenium::node_options: '-role node -browser "browserName=chrome, maxInstances=5, platform=ANY, seleniumProtocol=WebDriver" -browser "browserName=firefox, maxInstances=5, platform=ANY, seleniumProtocol=WebDriver"'
+
+base::packages:
+  git:
+    ensure: installed
+  firefox:
+    ensure: installed
+    #ensure: 45.7.0-2.el7.centos
+  chromedriver:
+    ensure: installed

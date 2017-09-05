@@ -1,0 +1,28 @@
+<%= scope.lookupvar('profile::base::motd_ascii') %>
+===============================================================================
+Welcome to <%= @fqdn %>
+This system is managed by Puppet
+
+The puppet master is <%= @servername %> in the <%= @environment %> environment
+This node is classified with the <%= @role %> role
+The operating system is <%= @operatingsystem %> <%= @operatingsystemrelease %>
+The total system memory is <%= @memorysize %>
+The processor is <%= @physicalprocessorcount %>x <%= @processor0 %> with a total of <%= @processorcount %> cores
+<%- if @domain -%>
+The domain is <%= @domain %>
+<%- end -%>
+<%- if @virtual == "gce" -%>
+This is a <%= @gce['instance']['machineType'] %> GCE VM running from <%= @gce['instance']['zone'] %>
+<%- end -%>
+This system has been running for <%= @uptime_days %> days as of <%= scope.lookupvar('profile::base::motd_timestamp') %>
+
+<%- if @virtual == "gce" -%>
+<%- if @gce['instance']['scheduling']['preemptible'] == "TRUE" -%>
+   __        ___    ____  _   _ ___ _   _  ____
+   \ \      / / \  |  _ \| \ | |_ _| \ | |/ ___|
+    \ \ /\ / / _ \ | |_) |  \| || ||  \| | |  _
+     \ V  V / ___ \|  _ <| |\  || || |\  | |_| |
+      \_/\_/_/   \_\_| \_\_| \_|___|_| \_|\____|
+This instance is preemptible and will live at most 24 hours.
+<%- end -%>
+<%- end -%>

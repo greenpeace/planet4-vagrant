@@ -1,0 +1,88 @@
+---
+# Puppet Configuration
+classes:
+  - profile::base
+  - profile::mysql
+  - profile::redis
+  - profile::apache24
+  - profile::apache_php70
+  - profile::vcsrepo
+  - profile::wordpress70
+  - profile::selenium_hub
+  - profile::selenium_node
+  - profile::chrome
+  - profile::geckodriver
+
+# Server OS Configuration
+selinux::selinux_mode: 'permissive'
+accounts::users:
+  planet4:
+    comment: 'Planet4'
+    groups:
+      - planet4
+
+base::packages:
+  git:
+    ensure: installed
+  svn:
+    ensure: installed
+  firefox:
+    ensure: 45.7.0-2.el7.centos
+  chromedriver:
+    ensure: installed
+
+# Database Configuration
+mysql::databases:
+  planet4_db:
+    user: planet4_user
+    password: 'password'
+    host: '%'
+    grant: ALL
+
+mysql::root_password: 'password'
+
+# Redis Configuration
+redis::requirepass: password
+
+# Webserver Configuration
+apache::apache_version: '2.4'
+apache::apache_name: 'httpd24-httpd'
+apache::service_name: 'httpd24-httpd'
+apache::dev_packages: 'httpd24-httpd-devel'
+apache::httpd_dir: '/opt/rh/httpd24/root/etc/httpd'
+apache::server_root: '/opt/rh/httpd24/root/etc/httpd'
+apache::mod_dir: "/opt/rh/httpd24/root/etc/httpd/conf.modules.d"
+apache::logroot: '/var/log/httpd24'
+apache::alias_icons_path: '/opt/rh/httpd24/root/usr/share/httpd/icons'
+apache::error_documents_path: '/opt/rh/httpd24/root/usr/share/httpd/error'
+apache::verify_command: '/opt/rh/httpd24/root/usr/sbin/apachectl -t'
+apache::vhosts:
+  planet4.local:
+    port: 80
+    docroot: "/var/www/html/public"
+    docroot_owner: planet4
+    docroot_group: planet4
+
+# Application Configuration
+vcsrepo::repos:
+    /var/www/html:
+      source: 'https://github.com/greenpeace/planet4-base.git'
+      revision: 'master'
+
+wordpress::wp_cli: /var/www/html/wp-cli.yml
+wordpress::site_url: http://planet4.local
+wordpress::site_title: Sample Planet 4 website
+wordpress::site_user: admin
+wordpress::site_email: admin@example.com
+wordpress::db_name: planet4_db
+wordpress::db_user: planet4_user
+wordpress::db_password: password
+wordpress::db_host: localhost
+php::redis_master: localhost
+php::redis_pass: password
+
+# Selenium Configuration
+selenium::version: 3.4.0
+selenium::geckodriver_version: 0.18.0
+selenium::selenium_hub: 'localhost'
+selenium::node_options: '-role node -browser "browserName=chrome, maxInstances=5, platform=ANY, seleniumProtocol=WebDriver" -browser "browserName=firefox, maxInstances=5, platform=ANY, seleniumProtocol=WebDriver"'

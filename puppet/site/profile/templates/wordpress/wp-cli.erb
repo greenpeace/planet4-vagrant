@@ -1,0 +1,16 @@
+path: public
+
+core config:
+  dbuser: <%= @db_user %>
+  dbpass: <%= @db_password %>
+  dbname: <%= @db_name %>
+  dbhost: <%= @db_host %>
+
+core install:
+  title: <%= @site_title %>
+  url: <%= @site_url %>
+  admin_user: <%= @site_user %>
+  admin_email: <%= @site_email %>
+
+theme activate:
+  - planet4-child-theme

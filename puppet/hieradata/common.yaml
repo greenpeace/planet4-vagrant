@@ -1,0 +1,46 @@
+---
+lookup_options:
+  accounts::users:
+    merge:
+      strategy: hash
+  base::packages:
+    merge:
+      strategy: hash
+  base::firewall:
+    merge:
+      strategy: hash
+
+accounts::users:
+  vagrant:
+    password: $1$ZuKOs8qE$3OzOPU5TQNI6jcpnWVsV6/
+
+selenium::selenium_hub: 'localhost'
+selenium::manage_logrotate: false
+
+selinux::selinux_mode: 'enforcing'
+
+ssh::permit_root_login: 'yes'
+ssh::sshd_password_authentication: 'yes'
+ssh::sshd_config_challenge_resp_auth: 'no'
+
+timezone::timezone: UTC
+
+base::packages:
+  yum:
+    ensure: installed
+  net-tools:
+    ensure: installed
+  nano:
+    ensure: installed
+
+base::firewall:
+  100 allow all inbound:
+    chain: INPUT
+    state: NEW
+    proto: all
+    action: accept
+  100 allow all outbound:
+    chain: OUTPUT
+    state: NEW
+    proto: all
+    action: accept

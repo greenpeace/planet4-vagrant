@@ -1,0 +1,34 @@
+forge 'http://forge.puppetlabs.com'
+
+# Modules from the Puppet Forge
+
+# Forge Modules
+mod 'puppetlabs-accounts',      '1.1.0'
+mod 'puppetlabs-apache',        '1.11.0'
+mod 'puppetlabs-firewall',      '1.9.0'
+mod 'puppetlabs-motd',          '1.4.0'
+mod 'puppetlabs-mysql',         '3.11.0'
+mod 'puppetlabs-ntp',           '6.2.0'
+mod 'puppetlabs-vcsrepo',       '2.0.0'
+mod 'arioch-redis',             '1.2.4' # Look into version 3.x ~LT
+mod 'ghoneycutt-ssh',           '3.52.0'
+mod 'ghoneycutt-selinux',       '1.3.0'
+mod 'saz-timezone',             '3.5.0'
+mod 'selenium',
+  :git => 'https://github.com/jhoblitt/puppet-selenium.git',
+  :commit => '2ec1842'
+
+# Dependencies
+mod 'puppetlabs-stdlib',        '4.17.1'
+mod 'puppetlabs-concat',        '2.2.1'
+mod 'puppet-staging',           '2.2.0'
+mod 'ghoneycutt-common',        '1.6.0'
+mod 'stahnma-epel',             '1.2.2'
+mod 'puppetlabs-java',          '1.6.0'
+mod 'puppet-archive',           '1.3.0'
+mod 'example42-yum',            '2.1.28'
+mod 'example42-puppi',          '2.2.3'
+mod 'maestrodev-wget',          '1.7.3'
+mod 'display',
+  :git => 'https://github.com/ltitus210/puppet-display.git',
+  :commit => '1db9d79'
