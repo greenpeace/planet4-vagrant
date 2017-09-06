@@ -1,13 +1,15 @@
 class profile::wordpress70 (
-  $wp_cli      = lookup(wordpress::wp_cli),
-  $site_url    = lookup(wordpress::site_url),
-  $site_title  = lookup(wordpress::site_title),
-  $site_user   = lookup(wordpress::site_user),
-  $site_email  = lookup(wordpress::site_email),
-  $db_name     = lookup(wordpress::db_name),
-  $db_user     = lookup(wordpress::db_user),
-  $db_password = lookup(wordpress::db_password),
-  $db_host     = lookup(wordpress::db_host),
+  $wp_cli        = lookup(wordpress::wp_cli),
+  $site_protocol = lookup(wordpress::site_protocol),
+  $site_domain   = lookup(wordpress::site_domain),
+  $site_url      = "${site_protocol}://${site_domain}/",
+  $site_title    = lookup(wordpress::site_title),
+  $site_user     = lookup(wordpress::site_user),
+  $site_email    = lookup(wordpress::site_email),
+  $db_name       = lookup(wordpress::db_name),
+  $db_user       = lookup(wordpress::db_user),
+  $db_password   = lookup(wordpress::db_password),
+  $db_host       = lookup(wordpress::db_host),
 ){
 
   package {['rh-php70-php-mysqlnd', 'sclo-php70-php-pecl-redis']:

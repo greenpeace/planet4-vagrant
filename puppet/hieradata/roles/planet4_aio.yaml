@@ -70,7 +70,8 @@ vcsrepo::repos:
       revision: 'master'
 
 wordpress::wp_cli: /var/www/html/wp-cli.yml
-wordpress::site_url: http://planet4.local
+wordpress::site_protocol: http
+wordpress::site_domain: planet4.greenpeace.org
 wordpress::site_title: Sample Planet 4 website
 wordpress::site_user: admin
 wordpress::site_email: admin@example.com
