@@ -37,4 +37,7 @@ $RECYCLE.BIN/
 remove_metatdata_files.sh
 
 ## r10k managed Puppet modules
-puppet/modules/
+puppet/modules
+
+## Vagrant Metadata
+.vagrant
