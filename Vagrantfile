@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
 
-  config.vm.define "planet4" do |planet4|
+  config.vm.define "planet4", primary: true do |planet4|
     planet4.vm.box = "centos7"
     planet4.vm.box_url = "http://cloud.centos.org/centos/7/vagrant/x86_64/images/CentOS-7.box"
 
