@@ -5,6 +5,7 @@ classes:
   - profile::selenium_node
   - profile::chrome
   - profile::geckodriver
+  - profile::chromedriver
   - profile::php_composer
   - profile::php_composer70
 
@@ -12,6 +13,7 @@ selinux::selinux_mode: 'permissive'
 #selenium::version: 2.53.1
 selenium::version: 3.4.0
 selenium::geckodriver_version: 0.18.0
+selenium::chromedriver_version: '2.32'
 selenium::selenium_hub: 'localhost'
 
 ### Read me closely!!!! Only uncomment _1_ of the follwing lines. Don't use multiples!
@@ -31,8 +33,10 @@ selenium::node_options: '-role node -browser "browserName=chrome, maxInstances=5
 base::packages:
   git:
     ensure: installed
+  unzip:
+    ensure: installed
   firefox:
     ensure: installed
     #ensure: 45.7.0-2.el7.centos
   chromedriver:
-    ensure: installed
+    ensure: absent
