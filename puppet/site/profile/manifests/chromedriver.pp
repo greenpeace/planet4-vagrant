@@ -23,5 +23,9 @@ class profile::chromedriver (
       target => "/usr/local/bin/chromedriver-${version}",
     }
 
+    file {'/bin/chromedriver':
+      ensure => 'link',
+      target => "/usr/local/bin/chromedriver-${version}",
+    }
 
 }
